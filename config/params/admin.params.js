@@ -5,7 +5,7 @@ const authParamValidation = {
   // POST /api/admin/addNewJobs
   addNewJobs: {
     body: {
-      username: Joi.string(),
+      username: Joi.string()
     }
 }
 }

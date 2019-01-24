@@ -9,6 +9,7 @@
     "start": "nodemon --exec babel-node index.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-validation": "^1.0.2",
     "joi": "^14.3.1",

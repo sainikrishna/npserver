@@ -4,7 +4,8 @@ var db;
 const config = {
     host: "localhost",
     user: "root",
-    password: ""
+    password: "",
+    database: "npserver"
 }
 
 function connectDatabase() {
@@ -21,6 +22,5 @@ function connectDatabase() {
     }
     return db;
 }
-
 
 module.exports = connectDatabase();
