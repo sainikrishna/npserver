@@ -9,7 +9,8 @@ const router = express.Router();
  * @apiDescription add new jobs data;
  */
 router.route("/new_jobs")
-    .post(validate(adminParamValidation.addNewJobs), adminCtrl.admin);
+    .post(validate(adminParamValidation.addNewJobs), adminCtrl.addNewJobs)
+    .get(adminCtrl.fetchNewJobs);
 
 
 export default router;
