@@ -10,7 +10,8 @@ const router = express.Router();
  */
 router.route("/new_jobs")
     .post(validate(adminParamValidation.addNewJobs), adminCtrl.addNewJobs)
-    .get(adminCtrl.fetchNewJobs);
+    .get(adminCtrl.fetchNewJobs)
+    .delete(adminCtrl.deleteNewJobs);
 
 
 export default router;
