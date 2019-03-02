@@ -21,6 +21,28 @@ exports.addNewJobs = async (req, res, next) => {
 	}
 };
 
+exports.updateJob = async (req, res, next) => {
+	try {
+		console.log('update Job body', req.body)
+		let data = req.body;
+		const { id } = data;
+
+		const sql = `UPDATE new_jobs SET ? WHERE id = ?`;
+
+		let updateData = [data, id];
+
+		db.query(sql, updateData, function (err, result) {
+			if (err) throw err;
+			console.log(result);
+		});
+
+		res.send(`Updated Successfully`);
+	}catch (error){
+		console.error(`Error: ${error.code}`);
+		return res.status(401).json({ "error": error.errmsg });
+	}
+};
+
 exports.fetchNewJobs = async (req, res, next) => {
 	try {
 		const { id } = req.query;

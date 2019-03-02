@@ -10,6 +10,7 @@ const router = express.Router();
  */
 router.route("/new_jobs")
     .post(validate(adminParamValidation.addNewJobs), adminCtrl.addNewJobs)
+    .put(validate(adminParamValidation.addNewJobs), adminCtrl.updateJob)
     .get(adminCtrl.fetchNewJobs)
     .delete(adminCtrl.deleteNewJobs);
 
