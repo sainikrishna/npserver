@@ -14,5 +14,8 @@ router.route("/new_jobs")
     .get(adminCtrl.fetchNewJobs)
     .delete(adminCtrl.deleteNewJobs);
 
+router.route("/new_jobs/validate-path")
+    .post(validate(adminParamValidation.validatePath), adminCtrl.validatePath)
+
 
 export default router;

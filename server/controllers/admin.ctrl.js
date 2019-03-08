@@ -84,3 +84,20 @@ exports.deleteNewJobs = async (req, res, next) => {
 		return res.status(401).json({ "error": error.errmsg });
 	}
 };
+
+exports.validatePath = async (req, res, next) => {
+	try{
+		const { path } = req.body;
+		console.log('validate path', path)
+		const sql = 'SELECT * FROM new_jobs WHERE path = ?';
+			db.query(sql, [path], function (err, result) {
+				if (err) throw err;
+				console.log(result);
+				const isValid = result.length ? false : true;
+				res.send(isValid);
+			});
+	}catch(error){
+		console.error(`Error: ${error.code}`);
+		return res.status(401).json({ "error": error.errmsg });
+	}
+};

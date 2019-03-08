@@ -21,8 +21,13 @@ const authParamValidation = {
       post_details: Joi.string().required(),
       created_at: Joi.string().required(),
       updated_at: Joi.string().required(),
-      total_posts: Joi.string()
+      total_posts: Joi.number(),
+      path: Joi.string()
     }
+  },
+
+  validatePath: {
+    path: Joi.string().required()
   }
 }
 
