@@ -23,10 +23,9 @@ exports.addNewJobs = async (req, res, next) => {
 
 exports.updateJob = async (req, res, next) => {
 	try {
-		console.log('update Job body', req.body)
 		let data = req.body;
 		const { id } = data;
-
+		console.log('update Job body', data)
 		const sql = `UPDATE new_jobs SET ? WHERE id = ?`;
 
 		let updateData = [data, id];
@@ -100,4 +99,27 @@ exports.validatePath = async (req, res, next) => {
 		console.error(`Error: ${error.code}`);
 		return res.status(401).json({ "error": error.errmsg });
 	}
+};
+
+
+exports.fetchJobDetail = async (req, res, next) => {
+	try {
+		const { path } = req.query;
+		console.log('fetchNewJObs', req.url)
+
+		if (path) {
+			const sql = 'SELECT * FROM new_jobs WHERE path = ?';
+			db.query(sql, [path], function (err, result) {
+				if (err) throw err;
+				console.log(result);
+				res.send(result);
+			});
+		}else{
+			return res.status(401).json({ "error": 'Path not valid.' });
+		}
+	}catch (error){
+		console.error(`Error: ${error.code}`);
+		return res.status(401).json({ "error": error.errmsg });
+	}
+	
 };
