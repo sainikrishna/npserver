@@ -14,9 +14,6 @@ router.route("/")
     .get(newJobs.fetchNewJobs)
     .delete(newJobs.deleteNewJobs);
 
-router.route("/validate-path")
-    .post(validate(adminParamValidation.validatePath), newJobs.validatePath)
-
 router.route("/detail")
     .get(newJobs.fetchJobDetail)
 

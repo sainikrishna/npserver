@@ -13,9 +13,6 @@ router.route("/")
     .get(results.fetchResults)
     .delete(results.deleteResults);
 
-router.route("/validate-path")
-    .post(validate(adminParamValidation.validatePath), results.validatePath)
-
 router.route("/detail")
     .get(results.fetchResultDetail)
 

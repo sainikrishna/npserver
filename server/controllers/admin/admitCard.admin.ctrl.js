@@ -1,52 +1,32 @@
 import db from '../../db';
 import uniqid from 'uniqid'
 
-
-exports.validatePath = async (req, res, next) => {
-	try{
-		const { path, tableName } = req.body;
-		console.log('validate path', path, tableName);
-
-		const sql = `SELECT * FROM ${tableName} WHERE path = ?`;
-			db.query(sql, [path], function (err, result) {
-				if (err) throw err;
-				console.log(result);
-				const isValid = result.length ? false : true;
-				res.send(isValid);
-			});
-	}catch(error){
-		console.error(`Error: ${error.code}`);
-		return res.status(401).json({ "error": error.errmsg });
-	}
-};
-
-
-exports.addNewJobs = async (req, res, next) => {
+exports.addAdmitCard = async (req, res, next) => {
 	try {
-		console.log('admin control', req.body)
+		console.log('add admit card body', req.body)
 		let data = req.body;
 		data.id = uniqid();
 
-		const sql = 'INSERT INTO new_jobs SET ?';
+		const sql = 'INSERT INTO admit_card SET ?';
 
 		db.query(sql, data, function (err, result) {
 			if (err) throw err;
 			console.log(result);
 		});
 
-		res.send(`This is Admin Api`);
+		res.send(`Admit card added successfully.`);
 	}catch (error){
 		console.error(`Error: ${error.code}`);
 		return res.status(401).json({ "error": error.errmsg });
 	}
 };
 
-exports.updateJob = async (req, res, next) => {
+exports.updateAdmitCard = async (req, res, next) => {
 	try {
 		let data = req.body;
 		const { id } = data;
-		console.log('update Job body', data)
-		const sql = `UPDATE new_jobs SET ? WHERE id = ?`;
+		console.log('update admit card body', data)
+		const sql = `UPDATE admit_card SET ? WHERE id = ?`;
 
 		let updateData = [data, id];
 
@@ -62,20 +42,19 @@ exports.updateJob = async (req, res, next) => {
 	}
 };
 
-exports.fetchNewJobs = async (req, res, next) => {
+exports.fetchAdmitCard = async (req, res, next) => {
 	try {
 		const { id } = req.query;
-		console.log('fetchNewJObs', req.url)
 
 		if (id) {
-			const sql = 'SELECT * FROM new_jobs WHERE id = ?';
+			const sql = 'SELECT * FROM admit_card WHERE id = ?';
 			db.query(sql, [id], function (err, result) {
 				if (err) throw err;
 				console.log(result);
 				res.send(result);
 			});
 		} else {
-			const sql = 'SELECT * FROM new_jobs';
+			const sql = 'SELECT * FROM admit_card';
 			db.query(sql, function (err, result) {
 				if (err) throw err;
 				console.log(result);
@@ -89,10 +68,10 @@ exports.fetchNewJobs = async (req, res, next) => {
 	
 };
 
-exports.deleteNewJobs = async (req, res, next) => {
+exports.deleteAdmitCard = async (req, res, next) => {
 	try{
 		const { id } = req.body;
-		const sql = 'DELETE FROM new_jobs WHERE id = ?';
+		const sql = 'DELETE FROM admit_card WHERE id = ?';
 		db.query(sql, [id], function (err, result) {
 			if (err) throw err;
 			console.log(result);
@@ -104,13 +83,12 @@ exports.deleteNewJobs = async (req, res, next) => {
 	}
 };
 
-exports.fetchJobDetail = async (req, res, next) => {
+exports.fetchAdmitCardDetail = async (req, res, next) => {
 	try {
 		const { path } = req.query;
-		console.log('fetchNewJObs', req.url)
 
 		if (path) {
-			const sql = 'SELECT * FROM new_jobs WHERE path = ?';
+			const sql = 'SELECT * FROM admit_card WHERE path = ?';
 			db.query(sql, [path], function (err, result) {
 				if (err) throw err;
 				console.log(result);
