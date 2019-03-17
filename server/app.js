@@ -6,7 +6,7 @@ import httpStatus from 'http-status';
 import expressValidation from 'express-validation';
 
 import home from "./routes/home.route";
-import admin from "./routes/admin.route";
+import admin from "./routes/admin";
 
 const app = express();
 
