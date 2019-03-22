@@ -6,7 +6,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js"
+    "start": "index.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
