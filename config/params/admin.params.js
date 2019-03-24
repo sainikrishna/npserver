@@ -4,6 +4,7 @@ const authParamValidation = {
 
   addNewJobs: {
     body: {
+      title: Joi.string().required(),
       name: Joi.string().required(),
       start_date: Joi.string().required(),
       last_date:  Joi.string().required(),
@@ -31,6 +32,7 @@ const authParamValidation = {
 
   addResults: {
     body: {
+      title: Joi.string().required(),
       name: Joi.string().required(),
       start_date: Joi.string().required(),
       last_date:  Joi.string().required(),
@@ -56,6 +58,7 @@ const authParamValidation = {
 
   addAdmitCard: {
     body: {
+      title: Joi.string().required(),
       name: Joi.string().required(),
       start_date: Joi.string().required(),
       last_date:  Joi.string().required(),
@@ -80,6 +83,7 @@ const authParamValidation = {
 
   addAnswerKey: {
     body: {
+      title: Joi.string().required(),
       name: Joi.string().required(),
       start_date: Joi.string().required(),
       last_date:  Joi.string().required(),

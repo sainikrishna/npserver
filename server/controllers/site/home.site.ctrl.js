@@ -1,21 +1,21 @@
-import db from '../db';
+import db from '../../db';
 
 exports.home = async (req, res) => {
 	try{
-		const sql = 'SELECT * FROM new_jobs';
+		const sql = 'SELECT * FROM new_jobs LIMIT 50';
 		let homeData = {new_jobs: [], results: [], admit_card: []}
 		await db.query(sql, function (err, result) {
 			if (err) throw err;
 			homeData.new_jobs = result;
 			console.log(homeData);
 		})
-		const sqlResults = 'SELECT * FROM results';
+		const sqlResults = 'SELECT * FROM results LIMIT 50';
 		db.query(sqlResults, function (err, result) {
 			if (err) throw err;
 			homeData.results = result;
 			console.log(homeData);
 		})
-		const sqlAdmitCard = 'SELECT * FROM admit_card';
+		const sqlAdmitCard = 'SELECT * FROM admit_card LIMIT 50';
 		db.query(sqlAdmitCard, function (err, result) {
 			if (err) throw err;
 			homeData.admit_card = result;

@@ -5,7 +5,7 @@ import APIError from './helpers/APIError';
 import httpStatus from 'http-status';
 import expressValidation from 'express-validation';
 
-import home from "./routes/home.route";
+import site from "./routes/site";
 import admin from "./routes/admin";
 
 const app = express();
@@ -14,7 +14,7 @@ app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ limit: '50mb',extended: true }));
 
 
-app.use("/api/home", home);
+app.use("/api", site);
 app.use("/api/admin", admin);
 
 

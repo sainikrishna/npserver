@@ -1,26 +1,6 @@
 import db from '../../db';
 import uniqid from 'uniqid'
 
-
-exports.validatePath = async (req, res, next) => {
-	try{
-		const { path, tableName } = req.body;
-		console.log('validate path', path, tableName);
-
-		const sql = `SELECT * FROM ${tableName} WHERE path = ?`;
-			db.query(sql, [path], function (err, result) {
-				if (err) throw err;
-				console.log(result);
-				const isValid = result.length ? false : true;
-				res.send(isValid);
-			});
-	}catch(error){
-		console.error(`Error: ${error.code}`);
-		return res.status(401).json({ "error": error.errmsg });
-	}
-};
-
-
 exports.addNewJobs = async (req, res, next) => {
 	try {
 		console.log('admin control', req.body)
