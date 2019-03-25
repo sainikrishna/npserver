@@ -1,11 +1,11 @@
 import express from "express";
-import db from './db';
 import bodyParser from 'body-parser';
 import APIError from './helpers/APIError';
-import httpStatus from 'http-status';
 import expressValidation from 'express-validation';
+import authorize from '../server/middlewares/authenticate';
 
 import site from "./routes/site";
+import auth from "./routes/auth";
 import admin from "./routes/admin";
 
 const app = express();
@@ -15,6 +15,9 @@ app.use(bodyParser.urlencoded({ limit: '50mb',extended: true }));
 
 
 app.use("/api", site);
+app.use("/api/auth", auth)
+app.use(authorize);
+
 app.use("/api/admin", admin);
 
 
