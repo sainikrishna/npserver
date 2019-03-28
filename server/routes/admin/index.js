@@ -16,5 +16,6 @@ router.use('/admit_card', admitCard);
 router.use('/answer_key', answerKey);
 router.post('/validate-path', validate(adminParamValidation.validatePath), controller.validatePath);
 router.get('/contactus', controller.getMessages);
+router.post('/user', controller.user);
 
 module.exports = router;

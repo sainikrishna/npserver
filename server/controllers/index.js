@@ -46,3 +46,28 @@ exports.getMessages = async (req, res, next) => {
 	}
 	
 }
+
+exports.user = async (req, res, next) => {
+	try {
+		const id = req.currentUser;
+		console.log('get user data', req.currentUser)
+			if(id){
+				const sql = 'SELECT * FROM admins WHERE id = ?';
+				db.query(sql, [id], function (err, user) {
+					if (err) throw err;
+					console.log(user);
+					if(user.length){
+						res.send(user[0]);
+					}else{
+						return res.status(401).json("error");
+					}
+				});
+			}else{
+				return res.status(401).json("error");
+			}
+	}catch (error){
+		console.error(`Error: ${error.code}`);
+		return res.status(401).json({ "error": error.errmsg });
+	}
+	
+}
