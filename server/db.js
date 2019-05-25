@@ -1,12 +1,21 @@
 import mysql from 'mysql';
 var db;
 
+//development
 const config = {
     host: "localhost",
     user: "root",
     password: "",
     database: "npserver"
 }
+
+//production
+// const config = {
+//     host: "localhost",
+//     user: "naukarip_naukarip",
+//     password: "x0JPy7Sf*u(52W",
+//     database: "naukarip_npserver"
+// }
 
 function connectDatabase() {
     if (!db) {
@@ -16,7 +25,7 @@ function connectDatabase() {
             if(!err) {
                 console.log('Database is connected!');
             } else {
-                console.log('Error connecting database!');
+                console.log('Error connecting database!', err);
             }
         });
     }

@@ -20,6 +20,26 @@ exports.validatePath = async (req, res, next) => {
 	}
 };
 
+exports.fetchPathDetail = async (req, res, next) => {
+	try{
+		const { path, tableName } = req.body;
+		console.log('fetch detail path', path, tableName);
+
+		const sql = `SELECT * FROM ${tableName} WHERE path = ?`;
+			db.query(sql, [path], function (err, result) {
+				if (err) throw err;
+				if(result.length){
+					res.send(result[0]);
+				}else{
+					return res.status(401).json("path invalid");
+				}
+			});
+	}catch(error){
+		console.error(`Error: ${error.code}`);
+		return res.status(401).json({ "error": error.errmsg });
+	}
+};
+
 exports.getMessages = async (req, res, next) => {
 	try {
 		const { id } = req.query;
@@ -44,7 +64,6 @@ exports.getMessages = async (req, res, next) => {
 		console.error(`Error: ${error.code}`);
 		return res.status(401).json({ "error": error.errmsg });
 	}
-	
 }
 
 exports.user = async (req, res, next) => {
@@ -69,5 +88,4 @@ exports.user = async (req, res, next) => {
 		console.error(`Error: ${error.code}`);
 		return res.status(401).json({ "error": error.errmsg });
 	}
-	
 }
